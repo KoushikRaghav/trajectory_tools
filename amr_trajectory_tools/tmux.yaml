@@ -1,0 +1,17 @@
+session_name: AMR Trajectory Visualisation
+suppress_history: false
+start_directory: ../.. # go to workspace
+
+windows:
+  - window_name: AMR Trajectory Visualisation
+    layout: main-vertical
+    shell_command_before:
+      source devel/setup.bash 
+    panes:
+      - roscore
+      - sleep 3; rosrun turtlesim turtlesim_node
+      - sleep 5; roslaunch amr_trajectory_tools trajectory_publisher_saver.launch
+      - rosrun amr_trajectory_tools publish_random_twist
+      - "echo 'RUN rosservice call /save_trajectory 'filename: 'trajectory_data.csv', duration: 100.0''"
+      - ""
+  

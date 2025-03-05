@@ -1,0 +1,20 @@
+<launch>
+  <!-- Load Parameters from YAML -->
+  <rosparam file="$(find amr_trajectory_tools)/config/trajectory_publisher_saver.yaml" command="load" />
+
+  <!-- Define Arguments -->
+  <arg name="pose_topic" default="/turtle1/pose" />
+  <arg name="marker_topic" default="/robot_trajectory_markers" />
+  <arg name="save_trajectory" default="/save_trajectory" />
+  <arg name="marker_timer_duration" default="0.5" />
+
+  <!-- Start the Trajectory Publisher Saver Node -->
+  <node pkg="amr_trajectory_tools" type="trajectory_publisher_saver" name="trajectory_publisher_saver" output="screen">
+    <param name="pose_topic" value="$(arg pose_topic)" />
+    <param name="marker_topic" value="$(arg marker_topic)" />
+    <param name="save_trajectory" value="$(arg save_trajectory)" />
+    <param name="marker_timer_duration" value="$(arg marker_timer_duration)" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find amr_trajectory_tools)/rviz/trajectory_visualisation.rviz" output="screen" />
+</launch>

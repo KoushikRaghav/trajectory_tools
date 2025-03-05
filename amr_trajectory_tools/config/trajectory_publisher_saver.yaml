@@ -1,0 +1,7 @@
+trajectory_publisher_saver:
+  topics:
+    pose_topic: "/turtle1/pose"
+    marker_topic: "/robot_trajectory_markers"
+  service:
+    save_trajectory: "/save_trajectory"
+  marker_timer_duration: 0.5 
